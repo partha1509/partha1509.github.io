@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TINY URL</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+		<form role="form" class="col-md-9 go-right">
+		<h2>Get Tiny URL</h2>
+		<div class="form-group">
+				<input id="fullurl" name="fullurl" type="text" class="form-control" required>
+				<label for="fullurl">Full URL</label>
+		</div>
+		<div class="form-group">
+			<input id="tinybutton" name="tinybutton" type="button" class="btn btn-primary" value="Get Tiny URL">
+		</div>
+
+		 <div class="alert alert-success" id="alert-box">
+    		<strong id="tinyurl"></strong>
+  		</div>
+		</form>
+	</div>
+</div>
+
+
+<script type="text/javascript">	
+	$(document).ready(function() {
+		$("#alert-box").hide();
+		$( "#tinybutton" ).click(function() {
+			var fullurl = $('#fullurl').val();
+			 $.ajax({
+       			 		url: "http://shtddopp.herokuapp.com/shorten/?fullURL="+fullurl
+    				}).then(function(data) {
+    					 $("#tinyurl").html(data.short_url);
+    					 $("#alert-box").show();
+    		});
+		});
+	});
+</script>
+</body>
+</html>
